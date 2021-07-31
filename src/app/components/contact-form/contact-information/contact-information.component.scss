@@ -6,8 +6,10 @@
     display: flex;
     flex-wrap: wrap;
   }
-  app-contact-information-form {
-    flex: 0 0 50%;
+  @media screen and (max-width: 530px) {
+    app-contact-information-form {
+      flex: 0 0 100%;
+    }
   }
   .contact-button {
     margin-left: 10px;
