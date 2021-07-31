@@ -1,0 +1,11 @@
+<app-custom-bar name="Contact Information"></app-custom-bar>
+<div class="form-container" [formGroup]="contactForm">
+  <ng-container formArrayName="contactInformation">
+    <app-contact-information-form [contactInformationGroup]="contactInformationGroup" id="contact{{i}}"
+    (delete)="deleteElement(i)" (selectedType)="selectedTypeEmitted(i, $event)" *ngFor="let contactInformationGroup of contactInformation.controls; let i = index">
+    </app-contact-information-form>
+  </ng-container>
+  <div class="break"></div>
+  <button mat-flat-button color="primary" (click)="addContactInformationForm(contactInformationCount)" class="contact-button">Add Contact</button>
+  <button type="submit" mat-flat-button color="accent" class="contact-button" (click)="beforeSubmit($event)">Save User Profile</button>
+</div>

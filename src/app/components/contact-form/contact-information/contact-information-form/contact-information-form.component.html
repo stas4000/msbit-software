@@ -1,0 +1,32 @@
+<ng-container [formGroup]="contactInformationGroup">
+  <mat-form-field appearance="outline">
+    <mat-label>Type Of Contact</mat-label>
+    <mat-select [ngModel]="'Email'" (ngModelChange)="selectedType.emit($event); onTypeChange($event)" formControlName="type">
+      <mat-option value="Email">Email</mat-option>
+      <mat-option value="Phone">Phone</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Contact Label</mat-label>
+    <input formControlName="label" matInput placeholder="Label">
+    <mat-icon matSuffix>bookmark_border</mat-icon>
+    <mat-hint *ngIf="label && label.invalid && (label.dirty || label.touched) && label.errors?.required">Label is required.</mat-hint>
+  </mat-form-field>
+  <div class="break"></div>
+  <mat-form-field *ngIf="selectedOption == 'Email'" appearance="outline">
+    <mat-label>Email</mat-label>
+    <input formControlName="email" matInput placeholder="Input as selected in type">
+    <mat-icon matSuffix>email</mat-icon>
+    <mat-hint *ngIf="email && email.invalid && (email.dirty || email.touched) && email.errors?.pattern">Email needs to be valid.</mat-hint>
+    <mat-hint *ngIf="email && email.invalid && (email.dirty || email.touched) && email.errors?.required">Email is required.</mat-hint>
+  </mat-form-field>
+  <mat-form-field *ngIf="selectedOption == 'Phone'" appearance="outline">
+    <mat-label>Phone No.</mat-label>
+    <input formControlName="phone" matInput placeholder="Input as selected in type">
+    <mat-icon matSuffix>phone_enabled</mat-icon>
+    <mat-hint *ngIf="phone && phone.invalid && (phone.dirty || phone.touched) && phone.errors?.pattern">Phone needs to be valid.</mat-hint>
+    <mat-hint *ngIf="phone && phone.invalid && (phone.dirty || phone.touched) && phone.errors?.required">Phone is required.</mat-hint>
+  </mat-form-field>
+  <div class="break"></div>
+  <button mat-flat-button (click)="delete.emit($event);" color="warn">Remove</button>
+</ng-container>

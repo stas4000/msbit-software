@@ -1,0 +1,5 @@
+<div class="container" [formGroup]="contactForm">
+  <app-user-profile [contactForm]="contactForm"></app-user-profile>
+  <app-contact-information (saveUser)="saveUserProfile()" [contactForm]="contactForm"></app-contact-information>
+</div>
+
